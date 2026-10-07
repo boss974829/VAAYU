@@ -6,9 +6,11 @@ The Android app is a WebView. It opens the website. It needs a network connectio
 
 ## Website
 
-[Vaayu — the live site](https://aitechupdates-boss-the-rule.vercel.app)
+[Vaayu — the live site](https://aitechnews.vercel.app)
 
-That is the page `com.aitechupdates.app` loads. It is the India air, water, and illness outlook, deployed on Vercel.
+That is the public site: air, water, and illness outlook for Indian cities, on a live Google Map. Deployed on Vercel.
+
+The copy of `com.aitechupdates.app` in this repo still opens the older GitHub Pages address. A new signed build is needed before the installed app follows this link.
 
 ## Android
 
