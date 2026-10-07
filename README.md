@@ -6,9 +6,9 @@ The Android app is a WebView. It opens the website. It needs a network connectio
 
 ## Website
 
-[Signal / Shift — the live edition](https://boss974829.github.io/unemployment-in-engineering-why/ai-tech-updates/)
+[Vaayu — the live site](https://aitechupdates-boss-the-rule.vercel.app)
 
-That is the page `com.aitechupdates.app` loads.
+That is the page `com.aitechupdates.app` loads. It is the India air, water, and illness outlook, deployed on Vercel.
 
 ## Android
 

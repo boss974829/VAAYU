@@ -1,0 +1,301 @@
+@import "tailwindcss";
+
+/* Sigal — shared type, space, and tone for Vaayu.
+   Quiet planes, ink as the only accent, color only on air status.
+   4px space scale, concentric radii, Figtree + Newsreader. */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  --bg: #f4f1eb;
+  --surface: #fbf9f6;
+  --fg: #1c1916;
+  --muted: #5c554c;
+  --subtle: #7a7268;
+  --border: #e3dbd1;
+  --accent: #1c1916;
+  --accent-fg: #f7f4ee;
+  --aqi-good: #1b5c40;
+  --aqi-moderate: #8a5310;
+  --aqi-poor: #9d3418;
+  --aqi-severe: #8b2433;
+  --font-sans: "Figtree", system-ui, sans-serif;
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-xl: clamp(1.5rem, 1.15rem + 1vw, 2rem);
+  --text-stat: clamp(2rem, 1.5rem + 1.6vw, 2.75rem);
+  --text-figure: clamp(4.25rem, 2.8rem + 6vw, 6rem);
+  --leading-tight: 0.95;
+  --leading-snug: 1.25;
+  --leading-body: 1.5;
+  --tracking-display: -0.03em;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --motion-quick: 150ms;
+  --motion-fast: 250ms;
+  --motion-slow: 400ms;
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: #131210;
+  --surface: #1c1a17;
+  --fg: #f3efe8;
+  --muted: #cfc6bc;
+  --subtle: #a3988e;
+  --border: #322e29;
+  --accent: #f3efe8;
+  --accent-fg: #141210;
+  --aqi-good: #9ddec4;
+  --aqi-moderate: #f0c27a;
+  --aqi-poor: #f3b0a2;
+  --aqi-severe: #f3b3bb;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--leading-body);
+    text-wrap: pretty;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+.figure {
+  font-family: var(--font-display);
+  font-size: var(--text-figure);
+  font-weight: 500;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-tight);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat {
+  font-family: var(--font-display);
+  font-size: var(--text-stat);
+  font-weight: 500;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-snug);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-snug);
+}
+
+.press {
+  transition-property: transform, opacity;
+  transition-duration: var(--motion-quick);
+  transition-timing-function: var(--ease-smooth-out);
+}
+
+.press:active {
+  transform: scale(0.98);
+}
+
+.field {
+  height: 3rem;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+  padding-inline: 0.75rem;
+  font: inherit;
+}
+
+.field::placeholder {
+  color: var(--subtle);
+}
+
+.field:focus-visible,
+.btn:focus-visible,
+.row:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
+.band-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 0.75rem;
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.band-good {
+  color: var(--aqi-good);
+}
+.band-moderate {
+  color: var(--aqi-moderate);
+}
+.band-poor {
+  color: var(--aqi-poor);
+}
+.band-severe {
+  color: var(--aqi-severe);
+}
+
+.band-chip-good {
+  color: var(--aqi-good);
+  background: color-mix(in oklab, var(--aqi-good) 16%, transparent);
+}
+.band-chip-moderate {
+  color: var(--aqi-moderate);
+  background: color-mix(in oklab, var(--aqi-moderate) 16%, transparent);
+}
+.band-chip-poor {
+  color: var(--aqi-poor);
+  background: color-mix(in oklab, var(--aqi-poor) 16%, transparent);
+}
+.band-chip-severe {
+  color: var(--aqi-severe);
+  background: color-mix(in oklab, var(--aqi-severe) 16%, transparent);
+}
+
+.anchor {
+  scroll-margin-top: 5rem;
+}
+
+.home-grid {
+  display: grid;
+  gap: var(--space-6);
+  min-width: 0;
+}
+
+.map-frame {
+  position: relative;
+  height: 18rem;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+}
+
+.map-frame-compact {
+  height: 14rem;
+}
+
+@media (min-width: 768px) {
+  .home-grid {
+    grid-template-columns: 22rem minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .map-frame {
+    height: 28rem;
+  }
+
+  .map-frame-compact {
+    height: 16rem;
+  }
+}
+
+.side-scroll {
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .side-scroll {
+    position: sticky;
+    top: 4.75rem;
+    max-height: calc(100dvh - 5.5rem);
+    overflow: auto;
+  }
+}
+
+.vaayu-map {
+  height: 100%;
+  width: 100%;
+  background: var(--surface);
+  isolation: isolate;
+  z-index: 0;
+  font-family: var(--font-sans);
+}
+
+.vaayu-map .leaflet-control-attribution {
+  background: color-mix(in oklab, var(--bg) 90%, transparent);
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.3;
+  max-width: 78%;
+}
+
+.leaflet-div-icon.vaayu-pin {
+  background: transparent;
+  border: none;
+}
+
+.vaayu-pin-dot {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 3px;
+  border-radius: 999px;
+  background: var(--fg);
+  box-shadow: 0 0 0 5px color-mix(in oklab, var(--fg) 18%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .press,
+  .press:active {
+    transition: none;
+    transform: none;
+  }
+
+  .animate-pulse {
+    animation: none !important;
+  }
+}
