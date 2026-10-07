@@ -1,8 +1,3 @@
-# AI Tech Updates
-
-Five minutes on what changed in AI and technology, who is building it, and what it does to work.
-
-The Android app is a WebView. It opens the website. It needs a network connection.
 
 ## Website
 
